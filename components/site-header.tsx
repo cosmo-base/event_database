@@ -61,12 +61,12 @@ export function SiteHeader() {
           </a>
 
           {/* Usage guide button */}
-          <Link href="/guide">
+          <a href="https://cosmo-base.github.io/member_only/guide/">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               <HelpCircle className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">使い方</span>
             </Button>
-          </Link>
+          </a>
 
           {/* Hamburger menu button */}
           <Button
