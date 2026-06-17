@@ -29,6 +29,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
- 
-  
+  return (
+    <html lang="ja">
+      <body className={`${_geist.className} ${_geistMono.className}`}>
+        {children}
+      </body>
+    </html>
+  )
 }
