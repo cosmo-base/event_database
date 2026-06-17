@@ -5,8 +5,8 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  basePath: '/member_only', 
-  assetPrefix: '/member_only', 
+  basePath: '/event_database', 
+  assetPrefix: '/event_database', 
 };
 
 export default nextConfig;
