@@ -1,4 +1,4 @@
-// app/CBED/map/page.tsx
+// app/map/page.tsx
 "use client"
 
 import { useEffect, useState, useMemo } from "react"
@@ -165,7 +165,7 @@ export default function MapSearchPage() {
                 </div>
               ) : visibleEvents.length > 0 ? (
                 visibleEvents.map(event => (
-                  <Link href={`/CBED/${event.id}`} key={event.id} className="block group">
+                  <Link href={`/${event.id}`} key={event.id} className="block group">
                     <div className="p-3 rounded-lg border border-border/50 hover:bg-primary/10 transition-colors cursor-pointer relative">
                       <h4 className="font-medium text-sm text-foreground mb-1 group-hover:text-primary transition-colors pr-5">
                         {event.title}

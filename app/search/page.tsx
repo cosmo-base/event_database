@@ -1,4 +1,4 @@
-// app/CBED/search/page.tsx
+// app/search/page.tsx
 "use client"
 
 import { useEffect, useState, useMemo } from "react"
@@ -231,7 +231,7 @@ export default function EventSearchPage() {
             }
             
             return (
-              <Link href={`/CBED/${event.id}`} key={event.id} className="block group">
+              <Link href={`/${event.id}`} key={event.id} className="block group">
                 <div className="glass-card rounded-xl p-5 border border-border/50 hover:bg-primary/5 transition-colors flex flex-col md:flex-row md:items-start justify-between gap-4 shadow-sm hover:shadow-md">
                   
                   <div className="flex-1 min-w-0">

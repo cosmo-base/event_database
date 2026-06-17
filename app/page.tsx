@@ -52,7 +52,7 @@ export default function EventsPage() {
             日本地図上でイベントを探せます。<br />
             お近くのイベントを見つけましょう。
           </p>
-          <Link href="/CBED/map">
+          <Link href="/map">
             <Button variant="outline" className="w-full">
               地図で探す
             </Button>
@@ -68,7 +68,7 @@ export default function EventsPage() {
             月間カレンダーでイベントをチェック。<br />
             スケジュール管理に便利です。
           </p>
-          <Link href="/CBED/calendar">
+          <Link href="/calendar">
             <Button variant="outline" className="w-full">
               カレンダーで探す
             </Button>
@@ -83,7 +83,7 @@ export default function EventsPage() {
           <p className="text-muted-foreground text-sm mb-4">
             日付、エリア、カテゴリ、参加費など<br />様々な条件で絞り込み検索。
           </p>
-          <Link href="/CBED/search">
+          <Link href="/search">
             <Button variant="outline" className="w-full">
               詳細検索
             </Button>
@@ -99,7 +99,7 @@ export default function EventsPage() {
             記載されていない宇宙のイベントがありましたら、お手数ですがお書きいただけますと幸いです。<br />
             皆様からの情報提供が、多くの宇宙ファンの助けになります！
           </p>
-          <Link href="/CBED/register">
+          <Link href="/register">
             <Button variant="outline" className="w-full">
               イベント登録
             </Button>

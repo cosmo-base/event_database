@@ -1,4 +1,4 @@
-// app/CBED/[id]/page.tsx
+// app/[id]/page.tsx
 import { Metadata } from "next"
 import { ContentPageLayout } from "@/components/content-page-layout"
 import { Button } from "@/components/ui/button"
@@ -151,7 +151,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ id
   return (
     <ContentPageLayout title="イベント詳細" level={3} levelTitle="" logo="CBED">
       <div className="mb-6">
-        <Link href="/CBED/search">
+        <Link href="/search">
           <Button variant="ghost" className="text-muted-foreground hover:text-foreground -ml-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
             一覧に戻る

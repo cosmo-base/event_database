@@ -6,7 +6,6 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
-  basePath: '/event_database', 
   assetPrefix: '/event_database', 
 };
 

@@ -1,4 +1,4 @@
-// app/CBED/calendar/page.tsx
+// app/calendar/page.tsx
 import { ContentPageLayout } from "@/components/content-page-layout"
 import { fetchEventsData } from "@/data/CBED"
 import { fetchLaunchesData } from "@/data/launches"

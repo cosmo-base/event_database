@@ -1,4 +1,4 @@
-// app/CBED/calendar/event-calendar.tsx
+// app/calendar/event-calendar.tsx
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
@@ -523,7 +523,7 @@ export default function EventCalendar({ events = [], launches = [] }: { events: 
                   </a>
                 </Button>
               ) : (
-                <Link href={`/CBED/${selectedEvent.id}`} className="flex-1" onClick={() => setSelectedEvent(null)}>
+                <Link href={`/${selectedEvent.id}`} className="flex-1" onClick={() => setSelectedEvent(null)}>
                   <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold h-12 glow">
                     このイベントの詳細ページへ
                   </Button>
