@@ -36,7 +36,7 @@ export function SiteHeader() {
           </Button>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3">
+          <a href="https://cosmo-base.github.io/member_only/" className="flex items-center gap-3">
             <Image
               src={logoImg}
               alt="Cosmo Base"
@@ -47,7 +47,7 @@ export function SiteHeader() {
             <span className="text-xs text-muted-foreground border-l border-border pl-3 hidden sm:block">
               参加者ページ
             </span>
-          </Link>
+          </a>
         </div>
 
         {/* Right side buttons */}

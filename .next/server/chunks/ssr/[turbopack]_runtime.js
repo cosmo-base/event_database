@@ -1,6 +1,6 @@
 const RUNTIME_PUBLIC_PATH = "server/chunks/ssr/[turbopack]_runtime.js";
 const RELATIVE_ROOT_PATH = "..";
-const ASSET_PREFIX = "/member_only/_next/";
+const ASSET_PREFIX = "/event_database/_next/";
 const WORKER_FORWARDED_GLOBALS = ["NEXT_DEPLOYMENT_ID","NEXT_CLIENT_ASSET_SUFFIX"];
 // Apply forwarded globals from workerData if running in a worker thread
 if (typeof require !== 'undefined') {
