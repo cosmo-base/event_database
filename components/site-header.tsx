@@ -9,7 +9,7 @@ import { Menu, X, Users, BookOpen, Database, Globe, HelpCircle, Twitter, Chevron
 import { Button } from "@/components/ui/button"
 
 import logoImg from "../public/images/cosmo-base-logo.png"
-import cbIcon from "../public/CB_icon.png"
+import cbIcon from "../app/icon.png"
 import xIcon from "../public/X.png"
 import instaIcon from "../public/Instagram.png"
 import noteIcon from "../public/note.png"
