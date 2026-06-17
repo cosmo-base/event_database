@@ -13,34 +13,12 @@ import footerLogo from "../public/images/cosmo-base-logo.png"
 // ★ 2. 各コンテンツ用のロゴをすべてインポート
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 import cbedLogo from "../public/CBED_logo.png"
-import cblLogo from "../public/CBL_logo.png" 
-import ittekitaLogo from "../public/CBittekita_logo.png" 
-import ittoideLogo from "../public/CBittoide_logo.png" 
-import newsLogo from "../public/CBnews_logo.png" 
-import oshieteLogo from "../public/CBoshiete_logo.png" 
-import quizLogo from "../public/CBquiz_logo.png" 
-import shittokuLogo from "../public/CBshittoku_logo.png" 
-import typeLogo from "../public/CBtype_logo.png" 
-import voyagerLogo from "../public/CBvoyager_logo.png"
-import cbmdLogo from "../public/CBMD_logo.png"
-import cmlogo from "../public/CosmoMatch.png"
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ★ 3. 呼び出し名（prop）とインポートした画像を紐づける辞書
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const LOGO_MAP: Record<string, any> = {
   "CBED": cbedLogo,
-  "CBL": cblLogo,
-  "CBittekita": ittekitaLogo,
-  "CBittoide": ittoideLogo, 
-  "CBnews": newsLogo,
-  "CBoshiete": oshieteLogo,
-  "CBquiz": quizLogo,
-  "CBshittoku": shittokuLogo,
-  "CBtype": typeLogo,
-  "CBvoyager": voyagerLogo,
-  "CBMD":cbmdLogo,
-  "CosmoMatch":cmlogo
 }
 
 interface ContentPageLayoutProps {
