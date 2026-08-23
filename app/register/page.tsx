@@ -20,7 +20,7 @@ export default function EventRegisterPage() {
     try {
       // 抽出したGoogleフォームのaction URL
       await fetch(
-        "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeyb8c4taYW7HP3tKjTfbHoQSp-M-AedhOzsBMM6RWLww-tnA/formResponse",
+        process.env.NEXT_PUBLIC_REGISTER_FORM_URL ?? "",
         {
           method: "POST",
           mode: "no-cors",

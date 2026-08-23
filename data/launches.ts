@@ -14,7 +14,7 @@ export interface LaunchEvent {
 }
 
 export async function fetchLaunchesData(): Promise<LaunchEvent[]> {
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTJU_Qq6TICMIAhDidiH2BYlBcZBvS_Uwy4wth9tT-02RYWkVP_AufdGo0PMAbAyrHKeZrE1x0laETY/pub?gid=541859876&single=true&output=csv';
+  const CSV_URL = process.env.NEXT_PUBLIC_LAUNCHES_CSV_URL ?? '';
   const BUILD_TIMESTAMP = Date.now();
   
   try {
