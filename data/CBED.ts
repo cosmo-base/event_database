@@ -24,7 +24,7 @@ export interface SpaceEvent {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ★ 2. データの取得先URLの設定（ハードコード）
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-const CBED_SPREADSHEET_BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTJU_Qq6TICMIAhDidiH2BYlBcZBvS_Uwy4wth9tT-02RYWkVP_AufdGo0PMAbAyrHKeZrE1x0laETY/pub?gid=0&single=true&output=csv";
+const CBED_SPREADSHEET_BASE_URL = process.env.NEXT_PUBLIC_CBED_CSV_URL ?? "";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ★ 3. 最強のCSVパーサー（空行スキップ・セル内改行対応）
