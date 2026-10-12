@@ -36,7 +36,7 @@ export function SiteHeader() {
           </Button>
 
           {/* Logo */}
-          <a href="https://cosmo-base.github.io/member_only/" className="flex items-center gap-3">
+          <a href="https://cb-member.fsif.jp/" className="flex items-center gap-3">
             <Image
               src={logoImg}
               alt="Cosmo Base"
@@ -53,7 +53,7 @@ export function SiteHeader() {
         {/* Right side buttons */}
         <div className="flex items-center gap-2">
           {/* Partners button */}
-          <a href="https://fsifofficial.github.io/CosmoBase/partners">
+          <a href="https://cosmobase.fsif.jp/partners">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               <Users className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">パートナー一覧</span>
@@ -61,7 +61,7 @@ export function SiteHeader() {
           </a>
 
           {/* Usage guide button */}
-          <a href="https://cosmo-base.github.io/member_only/guide/">
+          <a href="https://cb-member.fsif.jp/guide/">
             <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               <HelpCircle className="w-4 h-4 mr-2" />
               <span className="hidden sm:inline">使い方</span>
@@ -88,7 +88,7 @@ export function SiteHeader() {
 
               <li>
                 <a
-                  href="https://fsifofficial.github.io/CosmoBase/"
+                  href="https://cosmobase.fsif.jp/"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
@@ -106,7 +106,7 @@ export function SiteHeader() {
 
               <li>
                 <a
-                  href="https://cosmo-base.github.io/library/index.html"
+                  href="https://cbl.fsif.jp/"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setIsMenuOpen(false)}
