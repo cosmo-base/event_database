@@ -78,6 +78,9 @@ jobs:
           NEXT_PUBLIC_CBED_CSV_URL: ${{ secrets.NEXT_PUBLIC_CBED_CSV_URL }}
           NEXT_PUBLIC_LAUNCHES_CSV_URL: ${{ secrets.NEXT_PUBLIC_LAUNCHES_CSV_URL }}
           NEXT_PUBLIC_REGISTER_FORM_URL: ${{ secrets.NEXT_PUBLIC_REGISTER_FORM_URL }}
+          # 管理画面の GAS が出力する最新CSV（未設定なら公開CSVを使う）
+          CBED_BUILD_CSV_URL: ${{ secrets.CBED_BUILD_CSV_URL }}
+          LAUNCHES_BUILD_CSV_URL: ${{ secrets.LAUNCHES_BUILD_CSV_URL }}
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
