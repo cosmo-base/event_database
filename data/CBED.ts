@@ -26,6 +26,17 @@ export interface SpaceEvent {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const CBED_SPREADSHEET_BASE_URL = process.env.NEXT_PUBLIC_CBED_CSV_URL ?? "";
 
+// ビルド時だけ使う最新データの取得先（管理画面の GAS から直接CSVを出力）。
+// 「ウェブに公開」したCSVは反映まで約5分かかるため、ビルドではこちらを優先する。
+// NEXT_PUBLIC_ を付けないのでブラウザ用のコードには含まれない。
+const CBED_BUILD_CSV_URL = typeof window === "undefined" ? process.env.CBED_BUILD_CSV_URL ?? "" : "";
+// ビルドごとに変わる値を付けて、前回ビルドのキャッシュ（.next/cache）を使わないようにする
+const BUILD_TAG = process.env.GITHUB_RUN_ID || String(Date.now());
+
+function withBuildTag(url: string): string {
+  return `${url}${url.includes("?") ? "&" : "?"}_t=${BUILD_TAG}`;
+}
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ★ 3. 最強のCSVパーサー（空行スキップ・セル内改行対応）
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -86,6 +97,19 @@ function parseCSV(csvText: string): SpaceEvent[] {
 // ★ 4. データの取得処理（1日1回更新の最適化版）
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export async function fetchEventsData(): Promise<SpaceEvent[]> {
+  if (CBED_BUILD_CSV_URL) {
+    try {
+      const res = await fetch(withBuildTag(CBED_BUILD_CSV_URL), { next: { revalidate: 86400 } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const parsedEvents = parseCSV(await res.text());
+      if (parsedEvents.length === 0) throw new Error("0件");
+      console.log(`✅ CBED.ts: ビルド用URLから最新データを取得（取得件数: ${parsedEvents.length} 件）`);
+      return parsedEvents;
+    } catch (error) {
+      console.error("CBED build URL fetch error（公開CSVに切り替えます）:", error);
+    }
+  }
+
   try {
     // ★ next.revalidate を効かせるため、URLは末尾にタイムスタンプを付けず固定します
     const res = await fetch(CBED_SPREADSHEET_BASE_URL, {
