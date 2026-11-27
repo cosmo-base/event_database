@@ -27,12 +27,31 @@ export function fetchLaunchesData(): Promise<LaunchEvent[]> {
   return fetchLaunchesDataUncached();
 }
 
+export function parseLaunchesCsv(fileContent: string): LaunchEvent[] {
+  const records = parse(fileContent, {
+    columns: true,
+    skip_empty_lines: true,
+  });
+
+  return records.map((record: any, index: number) => ({
+    id: `launch-${index}`,
+    title: record.title || '',
+    date: new Date(record.date),
+    time: record.time || '',
+    location: record.location || '',
+    rocket: record.rocket || '',
+    description: record.description || '',
+    link: record.link || '',
+    isLaunch: true,
+  }));
+}
+
 async function fetchLaunchesDataUncached(): Promise<LaunchEvent[]> {
   const PUBLIC_CSV_URL = process.env.NEXT_PUBLIC_LAUNCHES_CSV_URL ?? '';
   // ビルド時だけ使う最新データの取得先（data/CBED.ts と同じ考え方）
   const BUILD_CSV_URL = typeof window === 'undefined' ? process.env.LAUNCHES_BUILD_CSV_URL ?? '' : '';
   const BUILD_TIMESTAMP = process.env.GITHUB_RUN_ID || String(Date.now());
-  
+
   try {
     const fetchCsv = async (url: string) => {
       const res = await fetch(`${url}${url.includes('?') ? '&' : '?'}_t=${BUILD_TIMESTAMP}`);
@@ -51,22 +70,7 @@ async function fetchLaunchesDataUncached(): Promise<LaunchEvent[]> {
       console.error('ロケット打ち上げのビルド用URLから取得できませんでした（公開CSVに切り替えます）:', error);
       fileContent = await fetchCsv(PUBLIC_CSV_URL);
     }
-    const records = parse(fileContent, {
-      columns: true,
-      skip_empty_lines: true,
-    });
-
-    return records.map((record: any, index: number) => ({
-      id: `launch-${index}`,
-      title: record.title || '',
-      date: new Date(record.date),
-      time: record.time || '',
-      location: record.location || '',
-      rocket: record.rocket || '',
-      description: record.description || '',
-      link: record.link || '',
-      isLaunch: true, 
-    }));
+    return parseLaunchesCsv(fileContent);
   } catch (error) {
     console.error('CSVパースエラー:', error);
     return [];

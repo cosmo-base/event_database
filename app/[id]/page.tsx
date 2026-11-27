@@ -4,7 +4,7 @@ import { ContentPageLayout } from "@/components/content-page-layout"
 import { Button } from "@/components/ui/button"
 import { MapPin, Calendar, Clock, ArrowLeft, ExternalLink, User, Users, Building, CalendarPlus } from "lucide-react"
 import Link from "next/link"
-import { fetchEventsData } from "@/data/CBED"
+import { fetchEventsDataForBuild as fetchEventsData } from "@/data/CBED.server"
 import { notFound } from "next/navigation"
 
 export const dynamicParams = false;

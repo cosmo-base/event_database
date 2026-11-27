@@ -40,7 +40,7 @@ function withBuildTag(url: string): string {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ★ 3. 最強のCSVパーサー（空行スキップ・セル内改行対応）
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-function parseCSV(csvText: string): SpaceEvent[] {
+export function parseCSV(csvText: string): SpaceEvent[] {
   const arr: string[][] = [];
   let quote = false;
   let col = 0, row = 0;
