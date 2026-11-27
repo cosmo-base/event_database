@@ -13,7 +13,21 @@ export interface LaunchEvent {
   isLaunch: boolean;
 }
 
-export async function fetchLaunchesData(): Promise<LaunchEvent[]> {
+// ビルド（サーバー側）では1回のプロセス内で何度呼ばれても取得は1回だけにする
+// （data/CBED.ts と同じ理由）。ブラウザ側は従来どおり呼ぶたびに取得し直す。
+let launchesDataPromise: Promise<LaunchEvent[]> | null = null;
+
+export function fetchLaunchesData(): Promise<LaunchEvent[]> {
+  if (typeof window === "undefined") {
+    if (!launchesDataPromise) {
+      launchesDataPromise = fetchLaunchesDataUncached();
+    }
+    return launchesDataPromise;
+  }
+  return fetchLaunchesDataUncached();
+}
+
+async function fetchLaunchesDataUncached(): Promise<LaunchEvent[]> {
   const PUBLIC_CSV_URL = process.env.NEXT_PUBLIC_LAUNCHES_CSV_URL ?? '';
   // ビルド時だけ使う最新データの取得先（data/CBED.ts と同じ考え方）
   const BUILD_CSV_URL = typeof window === 'undefined' ? process.env.LAUNCHES_BUILD_CSV_URL ?? '' : '';
