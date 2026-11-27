@@ -96,7 +96,24 @@ function parseCSV(csvText: string): SpaceEvent[] {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ★ 4. データの取得処理（1日1回更新の最適化版）
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-export async function fetchEventsData(): Promise<SpaceEvent[]> {
+// ビルド（サーバー側）では、1回のプロセス内で何度 fetchEventsData() が呼ばれても
+// 取得は1回だけにする。これが無いと generateStaticParams / generateMetadata /
+// ページ本体のたびに毎回CSVを取り直すことになり、公開CSVの反映ラグ（最大5分）と
+// 重なった場合に呼び出しごとに件数が変わって一部のイベントページだけ生成されない
+// 不具合が起きる。ブラウザ側（検索・地図ページ）は従来どおり呼ぶたびに取得し直す。
+let eventsDataPromise: Promise<SpaceEvent[]> | null = null;
+
+export function fetchEventsData(): Promise<SpaceEvent[]> {
+  if (typeof window === "undefined") {
+    if (!eventsDataPromise) {
+      eventsDataPromise = fetchEventsDataUncached();
+    }
+    return eventsDataPromise;
+  }
+  return fetchEventsDataUncached();
+}
+
+async function fetchEventsDataUncached(): Promise<SpaceEvent[]> {
   if (CBED_BUILD_CSV_URL) {
     try {
       const res = await fetch(withBuildTag(CBED_BUILD_CSV_URL), { next: { revalidate: 86400 } });
