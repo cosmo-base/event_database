@@ -1,7 +1,7 @@
 // app/calendar/page.tsx
 import { ContentPageLayout } from "@/components/content-page-layout"
-import { fetchEventsData } from "@/data/CBED"
-import { fetchLaunchesData } from "@/data/launches"
+import { fetchEventsDataForBuild as fetchEventsData } from "@/data/CBED.server"
+import { fetchLaunchesDataForBuild as fetchLaunchesData } from "@/data/launches.server"
 import EventCalendar from "./event-calendar"
 import { Metadata } from "next"
 

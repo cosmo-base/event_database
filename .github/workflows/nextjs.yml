@@ -73,6 +73,16 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Fetch event data snapshot
+        # next build は generateStaticParams とページ生成を別プロセスで実行するため、
+        # ビルド中にCSVを都度取得すると公開CSVの反映ラグ（最大5分）と重なって
+        # 件数がずれることがある。ビルドの前に一度だけ取得してファイルに固定する。
+        env:
+          NEXT_PUBLIC_CBED_CSV_URL: ${{ secrets.NEXT_PUBLIC_CBED_CSV_URL }}
+          NEXT_PUBLIC_LAUNCHES_CSV_URL: ${{ secrets.NEXT_PUBLIC_LAUNCHES_CSV_URL }}
+          CBED_BUILD_CSV_URL: ${{ secrets.CBED_BUILD_CSV_URL }}
+          LAUNCHES_BUILD_CSV_URL: ${{ secrets.LAUNCHES_BUILD_CSV_URL }}
+        run: node scripts/fetch-build-data.mjs
       - name: Build with Next.js
         env:
           NEXT_PUBLIC_CBED_CSV_URL: ${{ secrets.NEXT_PUBLIC_CBED_CSV_URL }}
